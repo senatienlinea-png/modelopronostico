@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Modelo de pronóstico El Niño · Perú 2026-27</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@500;700&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f4ef;--fg:#1b2430;--mut:#5d6773;--card:#fff;--line:#d9d4c8;--ac:#0e5c73;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111a21;--fg:#e8ecef;--mut:#9aa6b2;--card:#182530;--line:#2b3a47;--ac:#5cc0d8}}
+:root[data-theme="dark"]{--bg:#111a21;--fg:#e8ecef;--mut:#9aa6b2;--card:#182530;--line:#2b3a47;--ac:#5cc0d8}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 'Public Sans',system-ui,sans-serif}
+main{max-width:980px;margin:0 auto;padding:18px 14px 40px}
+h1,h2{font-family:Newsreader,Georgia,serif;margin:0 0 6px}
+h1{font-size:28px;line-height:1.15}h2{font-size:19px}
+p{margin:4px 0}.mut{color:var(--mut);font-size:13px}
+section{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px;margin-top:14px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch{border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:999px;padding:5px 11px;font:inherit;font-size:13px;cursor:pointer}
+.ch.on{background:var(--ac);border-color:var(--ac);color:#fff}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+@media(max-width:700px){.two{grid-template-columns:1fr}}
+#grid{display:grid;grid-template-columns:54px repeat(3,1fr);gap:5px;align-items:center}
+.hd{font-size:12px;color:var(--mut);text-align:center}.hd.r{text-align:left}
+.cell{border:2px solid transparent;border-radius:6px;padding:16px 0;font:600 18px 'Public Sans',sans-serif;cursor:pointer}
+.cell.sel{border-color:var(--fg)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+input,select,textarea{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 8px;max-width:100%}
+input[type=range]{width:100%;padding:0}
+label{display:flex;flex-direction:column;font-size:12px;color:var(--mut);gap:3px}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:6px;padding:8px 14px;font:600 14px 'Public Sans',sans-serif;cursor:pointer}
+.btn.g{background:transparent;color:var(--fg);border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:4px 6px;border-bottom:1px solid var(--line);text-align:left}
+ul{margin:6px 0;padding-left:18px}li{margin:3px 0}
+textarea{width:100%;min-height:210px;font-size:13px}
+details summary{cursor:pointer;font-weight:600}
+</style></head><body><main>
+<h1>Modelo de pronóstico de efectos del Fenómeno El Niño en Perú</h1>
+<p class="mut">Prototipo interactivo con bucle de mejora. Fuentes verificadas el 29/09/2026. Los índices son una guía de priorización, no un pronóstico oficial.</p>
+
+<section>
+<details open><summary>Datos oficiales de entrada (fuente y fecha)</summary>
+<ul>
+<li><b>ENFEN, Comunicado N.° 17-2026 (28/09/2026):</b> Alerta de El Niño Costero; magnitud extraordinaria en Niño 1+2 hasta enero de 2027 (88 % en octubre, 85 % en noviembre). Lluvias sobre lo normal (oct-dic) en costa norte, costa central y vertiente occidental andina norte; sierra sur y Amazonía de normales a deficitarias. Próximo comunicado: 15/10/2026.</li>
+<li><b>NOAA CPC (10/09/2026):</b> más de 90 % de probabilidad de El Niño muy fuerte en 2026-27; 75 % de un evento histórico en oct-dic. Próxima actualización: 08/10/2026.</li>
+<li><b>Indeci:</b> 1 248 412 personas potencialmente expuestas (oct 2026-mar 2027); 796 distritos en emergencia por lluvias y 607 por déficit hídrico.</li>
+<li><b>Cenepred:</b> 209 distritos con riesgo muy alto por inundaciones (22 departamentos) y 185 por movimientos en masa (16); sequía: 76 distritos y más de 622 000 personas, con Puno como mayor exposición. Marzo y abril son los meses de mayor riesgo.</li>
+</ul>
+<p class="mut">La <b>dirección</b> de cada efecto (dónde llueve más, dónde falta agua) viene de estas fuentes. Los <b>pesos numéricos</b> (0 a 1) son un supuesto inicial de trabajo, y el bucle los recalibra con observaciones reales. Salud, agricultura, pesca e infraestructura son hipótesis derivadas hasta contar con cifras oficiales.</p>
+</details></section>
+
+<section>
+<div class="row" id="efs" role="group" aria-label="Efecto"></div>
+<div class="row" style="margin-top:10px">
+<label>Escenario<select id="sc"><option value="1">Extraordinario (vigente según ENFEN)</option><option value=".8">Fuerte</option><option value=".55">Moderado</option></select></label>
+<label style="flex:1;min-width:200px">Fecha del pronóstico: <b id="dt"></b><input type="range" id="sl" min="0" value="0" aria-label="Fecha del pronóstico"></label>
+</div>
+<div class="two" style="margin-top:12px">
+<div><div id="grid"></div><p class="mut">Índice 0-100 por zona. Toca una celda para ver su curva.</p></div>
+<div><h2 id="sel"></h2><p class="mut" id="tag"></p><div id="ch"></div><p class="mut">Línea: pronóstico hasta junio 2027. Puntos negros: observaciones registradas.</p></div>
+</div></section>
+
+<section>
+<h2>Bucle de mejora automático</h2>
+<p class="mut" id="meta">Cargando datos…</p><p id="st"></p>
+<table><thead><tr><th>Fecha</th><th>Zona</th><th>Efecto</th><th>Pronóstico</th><th>Observado</th><th>Error</th></tr></thead><tbody id="lg"></tbody></table>
+<h2 style="margin-top:14px">Mejoras aplicadas en la última actualización</h2><ul id="chg"></ul>
+<h2>Estado de las fuentes</h2><ul id="src"></ul>
+<p class="mut">El índice observado es el percentil del conteo semanal de reportes oficiales frente a su historia (50 = típico; 100 = máximo histórico).</p>
+</section>
+
+<section>
+<h2>Informe diario</h2>
+<div class="row"><button class="btn" id="rp">Generar informe</button><button class="btn g" id="cp">Copiar</button></div>
+<textarea id="rt" readonly style="margin-top:8px" aria-label="Informe"></textarea>
+<p class="mut">El informe del día también se guarda en informe.md y se actualiza cada mañana.</p>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const NAMES=['Costa norte','Costa centro','Costa sur','Sierra norte','Sierra centro','Sierra sur','Selva norte','Selva centro','Selva sur'];
+const SP={ll:[.95,.6,.15,.55,.35,.1,.25,.15,.05],sq:[.05,.1,.2,.15,.3,.9,.45,.45,.45],ca:[.95,.8,.6,.3,.3,.3,.4,.4,.4],pe:[1,.9,.5,0,0,0,0,0,0]};
+const CV={ll:[.2,.4,.55,.65,.8,.95,1,1,.6,.3],sq:[.3,.4,.5,.6,.7,.8,.9,1,.8,.6],ca:[1,1,.95,.9,.9,.85,.8,.6,.4,.3],pe:[1,1,1,1,1,.9,.8,.6,.4,.3]};
+const EF=[['ll','Lluvias, inundaciones y huaicos','o'],['sq','Déficit hídrico y sequía','o'],['ca','Calor extremo','o'],['pe','Pesca y ecosistema marino','h'],['sa','Salud (dengue y otras)','h'],['ag','Agricultura','h'],['in','Infraestructura vial','h']];
+const T0=new Date();T0.setHours(0,0,0,0);
+const NDAY=Math.max(30,Math.round((new Date(2027,5,30)-T0)/864e5));
+const dAt=n=>new Date(T0.getTime()+n*864e5);
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const fmt=d=>d.toLocaleDateString('es-PE',{day:'numeric',month:'short',year:'numeric'});
+const clamp=(x,a,b)=>Math.min(b,Math.max(a,x));
+const S={sc:1,k:'ll',i:0,n:0,co:{},lg:[]};
+function cur(k,d){const p=clamp((d-new Date(2026,8,15))/(30.44*864e5),0,9),a=Math.floor(p),b=Math.min(9,a+1);return CV[k][a]+(CV[k][b]-CV[k][a])*(p-a)}
+function hz(k,i,d){const b=x=>S.sc*SP[x][i]*cur(x,d);
+ if(k==='sa')return .5*b('ll')+.5*b('ca');if(k==='ag')return Math.max(.7*b('ll'),.8*b('sq'));if(k==='in')return .9*b('ll');return b(k)}
+const pr=(k,i,d)=>clamp(100*hz(k,i,d)+(S.co[k+i]||0),0,100);
+const col=v=>`hsl(${45-37*v/100},${45+25*v/100}%,${92-54*v/100}%)`;
+const mae=a=>a.length?a.reduce((s,l)=>s+Math.abs(l.e),0)/a.length:null;
+function chart(){const W=320,H=130,x=n=>10+300*n/NDAY,y=v=>H-10-(H-20)*v/100;
+ let p='';for(let n=0;n<=NDAY;n+=3)p+=(n?'L':'M')+x(n).toFixed(1)+','+y(pr(S.k,S.i,dAt(n))).toFixed(1);
+ const o=S.lg.filter(l=>l.k===S.k&&l.i===S.i).map(l=>{const n=(new Date(l.d+'T00:00')-T0)/864e5;return n>=0&&n<=NDAY?`<circle cx="${x(n)}" cy="${y(l.o)}" r="3.5" fill="var(--fg)"/>`:''}).join('');
+ $('ch').innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Curva de pronóstico"><path d="M10 ${y(0)}H310M10 ${y(50)}H310M10 ${y(100)}H310" stroke="var(--line)" fill="none"/><path d="${p}" stroke="var(--ac)" stroke-width="2" fill="none"/><line x1="${x(S.n)}" x2="${x(S.n)}" y1="8" y2="${H-10}" stroke="var(--mut)" stroke-dasharray="3"/>${o}</svg>`}
+function stats(){const L=S.lg,a=mae(L.slice(-5)),b=mae(L.slice(-10,-5));
+ $('st').innerHTML=`Registros: <b>${L.length}</b> · Error medio (últimos 5): <b>${a==null?'—':a.toFixed(1)}</b>${a!=null&&b!=null?` (5 previos: ${b.toFixed(1)}; ${a<b?'el modelo mejora':'sin mejora todavía'})`:''} · Corrección de esta zona: <b>${(S.co[S.k+S.i]||0).toFixed(1)}</b>`;
+ $('lg').innerHTML=L.slice(-6).reverse().map(l=>`<tr><td>${l.d}</td><td>${NAMES[l.i]}</td><td>${EF.find(e=>e[0]===l.k)[1].split(' ')[0]}</td><td>${l.p}</td><td>${l.o}</td><td>${l.e>0?'+':''}${l.e}</td></tr>`).join('')||'<tr><td colspan="6">Sin registros aún.</td></tr>'}
+function render(){const d=dAt(S.n);
+ $('efs').innerHTML=EF.map(e=>`<button class="ch ${e[0]===S.k?'on':''}" data-k="${e[0]}">${e[1]}</button>`).join('');
+ $('dt').textContent=fmt(d);
+ let g='<div></div>'+['Norte','Centro','Sur'].map(x=>`<div class="hd">${x}</div>`).join('');
+ ['Costa','Sierra','Selva'].forEach((r,ri)=>{g+=`<div class="hd r">${r}</div>`;for(let c=0;c<3;c++){const i=ri*3+c,v=Math.round(pr(S.k,i,d));g+=`<button class="cell ${i===S.i?'sel':''}" data-i="${i}" aria-label="${NAMES[i]}: ${v}" style="background:${col(v)};color:${v>52?'#fff':'#1b2430'}">${v}</button>`}});
+ $('grid').innerHTML=g;
+ const ef=EF.find(e=>e[0]===S.k);
+ $('tag').textContent=ef[2]==='o'?'Dirección del efecto basada en fuentes oficiales.':'Hipótesis derivada del modelo; aún sin cifra oficial.';
+ $('sel').textContent=NAMES[S.i]+': '+ef[1];
+ chart();stats()}
+$('efs').onclick=e=>{const k=e.target.dataset.k;if(k){S.k=k;render()}};
+$('grid').onclick=e=>{const i=e.target.dataset.i;if(i!==undefined){S.i=+i;render()}};
+$('sc').onchange=e=>{S.sc=+e.target.value;render()};
+$('sl').max=NDAY;$('sl').oninput=e=>{S.n=+e.target.value;render()};
+$('rp').onclick=()=>{const d=dAt(S.n);
+ let t=`INFORME DE SEGUIMIENTO · EL NIÑO PERÚ 2026-27\nFecha del pronóstico: ${fmt(d)} · Escenario: ${$('sc').selectedOptions[0].text}\nEstado oficial (ENFEN N.° 17-2026, 28/09/2026): Alerta de El Niño Costero, magnitud extraordinaria hasta enero de 2027.\n\nZonas de mayor riesgo por efecto (índice 0-100):\n`;
+ EF.forEach(e=>{const r=NAMES.map((n,i)=>[n,Math.round(pr(e[0],i,d))]).sort((a,b)=>b[1]-a[1]).slice(0,3);t+=`- ${e[1]}: ${r.map(x=>x[0]+' '+x[1]).join('; ')}\n`});
+ const a=mae(S.lg.slice(-5));
+ t+=`\nBucle de mejora: ${S.lg.length} observaciones; error medio de las últimas 5: ${a==null?'sin datos':a.toFixed(1)}.\n`;
+ S.lg.slice(-5).forEach(l=>{t+=`  · ${l.d} ${NAMES[l.i]} (${l.k}): pron. ${l.p}, obs. ${l.o}. Fuente: ${l.f}\n`});
+ t+='\nAviso: prototipo de apoyo a la decisión; no reemplaza los comunicados de ENFEN, SENAMHI e INDECI. Próximos oficiales: NOAA 08/10, ENFEN 15/10.';
+ $('rt').value=t};
+$('cp').onclick=async()=>{const r=$('rt');r.select();try{await navigator.clipboard.writeText(r.value)}catch(e){try{document.execCommand('copy')}catch(_){}}};
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+fetch('state.json',{cache:'no-store'}).then(r=>r.json()).then(j=>{
+ const m=j.meta||{};
+ if(m.params){Object.assign(SP,m.params.SP);Object.assign(CV,m.params.CV)}
+ S.co=j.co||{};S.lg=j.lg||[];
+ $('meta').textContent=m.actualizado?`Última actualización: ${m.actualizado} (Lima). Dato del día: ${m.fecha_dato}.`:'Aún no hay actualizaciones: ejecuta el flujo diario.';
+ $('chg').innerHTML=(m.cambios||[]).map(x=>`<li>${esc(x)}</li>`).join('')||'<li>Sin cambios registrados.</li>';
+ $('src').innerHTML=(m.fuentes||[]).map(x=>`<li><b>${esc(x[0])}</b>: ${esc(x[1])}${x[2]?' · '+esc(x[2]):''}</li>`).join('');
+ render()}).catch(()=>{$('meta').textContent='No se pudo leer state.json.';render()});
+</script></body></html>

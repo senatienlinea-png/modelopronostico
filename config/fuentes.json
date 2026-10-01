@@ -1,0 +1,22 @@
+{
+  "noaa_url": "https://www.cpc.ncep.noaa.gov/data/indices/wksst9120.for",
+  "indeci_url": "https://portal.indeci.gob.pe/emergencias/",
+  "historico": {"url": "", "sep": ",", "col_fecha": "", "col_dep": "", "col_peligro": ""},
+  "auto": ["ll", "sq", "ca"],
+  "efectos": {
+    "ll": "LLUVIA|INUNDACION|HUAICO|DESLIZAMIENTO|DERRUMBE|ALUVION|DESBORDE|CRECIDA",
+    "sq": "SEQUIA|DEFICIT HIDRICO",
+    "ca": "ALTAS TEMPERATURAS|OLA DE CALOR"
+  },
+  "zonas": {
+    "0": ["TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD"],
+    "1": ["ANCASH","LIMA","CALLAO"],
+    "2": ["ICA","AREQUIPA","MOQUEGUA","TACNA"],
+    "3": ["CAJAMARCA"],
+    "4": ["JUNIN","PASCO","HUANUCO","HUANCAVELICA"],
+    "5": ["AYACUCHO","APURIMAC","CUSCO","PUNO"],
+    "6": ["LORETO","SAN MARTIN","AMAZONAS"],
+    "7": ["UCAYALI"],
+    "8": ["MADRE DE DIOS"]
+  }
+}
