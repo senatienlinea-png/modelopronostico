@@ -1,10 +1,10 @@
-# Informe diario · El Niño Perú · 2026-11-07
+# Informe diario · El Niño Perú · 2026-11-08
 
-Dato hasta: 2026-11-06. Estado oficial vigente: editar en docs/index.html tras cada comunicado ENFEN.
+Dato hasta: 2026-11-07. Estado oficial vigente: editar en docs/index.html tras cada comunicado ENFEN.
 
 ## Fuentes
 - NOAA CPC (Niño semanal): ok semana 28OCT2026: Niño 1+2 +5.4 °C, Niño 3.4 +3.4 °C
-- INDECI COEN (emergencias): ok 16 leídos, 681 acumulados desde 2026-10-01
+- INDECI COEN (emergencias): ok 14 leídos, 694 acumulados desde 2026-10-01
 - INDECI histórico (línea base): pendiente configura historico en config/fuentes.json
 - SENAMHI / ANA: pendiente sin descarga automática verificada; usa data/manual_observaciones.csv
 
@@ -17,7 +17,7 @@ Dato hasta: 2026-11-06. Estado oficial vigente: editar en docs/index.html tras c
 - Calor extremo: Costa norte 91; Costa centro 77; Costa sur 58
 - Pesca y ecosistema marino: Costa norte 100; Costa centro 90; Costa sur 50
 - Salud: Costa norte 70; Costa centro 54; Costa sur 33
-- Agricultura: Sierra sur 34; Costa norte 34; Costa centro 21
-- Infraestructura vial: Costa norte 44; Costa centro 28; Sierra norte 25
+- Agricultura: Sierra sur 34; Costa norte 34; Costa centro 22
+- Infraestructura vial: Costa norte 44; Costa centro 28; Sierra norte 26
 
 Prototipo de apoyo; no reemplaza los comunicados de ENFEN, SENAMHI e INDECI.
