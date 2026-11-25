@@ -1,10 +1,10 @@
-# Informe diario · El Niño Perú · 2026-11-24
+# Informe diario · El Niño Perú · 2026-11-25
 
-Dato hasta: 2026-11-23. Estado oficial vigente: editar en docs/index.html tras cada comunicado ENFEN.
+Dato hasta: 2026-11-24. Estado oficial vigente: editar en docs/index.html tras cada comunicado ENFEN.
 
 ## Fuentes
 - NOAA CPC (Niño semanal): ok semana 18NOV2026: Niño 1+2 +5.7 °C, Niño 3.4 +3.3 °C
-- INDECI COEN (emergencias): ok 14 leídos, 930 acumulados desde 2026-10-01
+- INDECI COEN (emergencias): ok 15 leídos, 945 acumulados desde 2026-10-01
 - INDECI histórico (línea base): pendiente configura historico en config/fuentes.json
 - SENAMHI / ANA: pendiente sin descarga automática verificada; usa data/manual_observaciones.csv
 
